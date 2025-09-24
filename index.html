@@ -1,257 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PJTA - Philippines–Japan Teachers Association</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #f5f9ff;
-            color: #222;
-            scroll-behavior: smooth;
-        }
-        /* HEADER */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 50px;
-            background: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        header .logo {
-            font-size: 22px;
-            font-weight: 700;
-            color: #0d47a1;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: 600;
-            color: #333;
-            transition: 0.3s;
-        }
-        nav a:hover { color: #1565c0; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PJTA - Philippines–Japan Teachers Association</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-        /* HERO */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            height: 90vh;
-            background: linear-gradient(135deg, #0d47a1, #1565c0);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::after {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,215,0,0.15) 20%, transparent 70%);
-            animation: rotate 20s linear infinite;
-            z-index: 0;
-        }
-        @keyframes rotate { 100% { transform: rotate(360deg); } }
-        .hero-text { position: relative; z-index: 1; max-width: 700px; }
-        .hero-text h1 { font-size: 48px; margin-bottom: 20px; }
-        .hero-text p { font-size: 20px; margin-bottom: 30px; }
-        .hero-text .btn {
-            background: gold;
-            color: #0d47a1;
-            padding: 14px 30px;
-            border-radius: 30px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: 0.3s;
-            box-shadow: 0 0 15px rgba(255,215,0,0.6);
-        }
-        .hero-text .btn:hover {
-            background: white;
-            color: #0d47a1;
-            box-shadow: 0 0 20px rgba(255,255,255,0.8);
-        }
-        .hero-flags {
-            margin-top: 25px;
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
-        .hero-flags img {
-            width: 100px;
-            border: 3px solid white;
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-        .hero-flags img:hover { transform: scale(1.1); }
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0d47a1">
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(() => console.log("✅ Service Worker registered"))
+        .catch(err => console.error("❌ SW registration failed:", err));
+    }
+  </script>
 
-        /* SECTIONS */
-        section { padding: 80px 60px; text-align: center; }
-        section h2 {
-            font-size: 32px;
-            color: #0d47a1;
-            margin-bottom: 30px;
-            position: relative;
-            display: inline-block;
-        }
-        section h2::after {
-            content: "";
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: gold;
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-        section p {
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 17px;
-            color: #444;
-        }
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f0f6ff;
+      color: #222;
+      scroll-behavior: smooth;
+    }
 
-        /* GRID CARDS */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-        }
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      background: linear-gradient(90deg, #0d47a1, #1565c0);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      flex-wrap: wrap;
+    }
+    header .logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    nav a {
+      margin: 8px 12px;
+      text-decoration: none;
+      font-weight: 600;
+      color: white;
+      transition: 0.3s;
+    }
+    nav a:hover { color: gold; }
 
-        /* CONTACT FORM */
-        form {
-            display: flex;
-            flex-direction: column;
-            max-width: 500px;
-            margin: auto;
-        }
-        form input, form textarea {
-            margin: 10px 0;
-            padding: 14px;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            font-size: 15px;
-            transition: 0.3s;
-        }
-        form input:focus, form textarea:focus {
-            border-color: #0d47a1;
-            outline: none;
-            box-shadow: 0 0 6px rgba(13,71,161,0.4);
-        }
-        form textarea { resize: none; height: 120px; }
-        form button {
-            background: #0d47a1;
-            color: white;
-            padding: 14px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: 0.3s;
-        }
-        form button:hover { background: #1565c0; }
+    /* HERO */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 80vh;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #0d47a1, #1976d2, #42a5f5);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,215,0,0.2) 20%, transparent 70%);
+      animation: rotate 20s linear infinite;
+      z-index: 0;
+    }
+    @keyframes rotate { 100% { transform: rotate(360deg); } }
+    .hero-text { position: relative; z-index: 1; max-width: 700px; }
+    .hero-text h1 { font-size: 34px; margin-bottom: 15px; }
+    .hero-text p { font-size: 18px; margin-bottom: 25px; }
+    .hero-text .btn {
+      background: gold;
+      color: #0d47a1;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.3s;
+      box-shadow: 0 0 15px rgba(255,215,0,0.6);
+      display: inline-block;
+    }
+    .hero-text .btn:hover {
+      background: white;
+      color: #0d47a1;
+      box-shadow: 0 0 20px rgba(255,255,255,0.8);
+    }
+    .hero-flags {
+      margin-top: 25px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-flags img {
+      width: 80px;
+      border: 3px solid white;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+    .hero-flags img:hover { transform: scale(1.1); }
 
-        /* FOOTER */
-        footer {
-            background: #0d47a1;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-size: 14px;
-        }
-        footer a { color: gold; text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
-    </style>
+    /* SECTIONS */
+    section { padding: 60px 20px; text-align: center; }
+    section h2 {
+      font-size: 28px;
+      color: #0d47a1;
+      margin-bottom: 25px;
+      position: relative;
+      display: inline-block;
+    }
+    section h2::after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 4px;
+      background: #42a5f5;
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+    section p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 16px;
+      color: #444;
+      padding: 0 10px;
+    }
+
+    /* GRID CARDS */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .card {
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      font-weight: 600;
+      color: #0d47a1;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    }
+
+    /* CONTACT FORM */
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 450px;
+      margin: auto;
+      padding: 0 15px;
+    }
+    form input, form textarea {
+      margin: 8px 0;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #90caf9;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+    form input:focus, form textarea:focus {
+      border-color: #1565c0;
+      outline: none;
+      box-shadow: 0 0 6px rgba(21,101,192,0.5);
+    }
+    form textarea { resize: none; height: 100px; }
+    form button {
+      background: linear-gradient(90deg, #1565c0, #42a5f5);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+    form button:hover { background: #0d47a1; }
+
+    /* FOOTER */
+    footer {
+      background: linear-gradient(90deg, #0d47a1, #1565c0);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 13px;
+    }
+    footer a { color: gold; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-text h1 { font-size: 26px; }
+      .hero-text p { font-size: 16px; }
+      header { flex-direction: column; }
+      nav { margin-top: 10px; }
+    }
+    @media (max-width: 480px) {
+      .hero-text h1 { font-size: 22px; }
+      .hero-flags img { width: 60px; }
+    }
+  </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <header>
-        <div class="logo">Philippines–Japan Teachers Association</div>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#programs">Programs</a>
-            <a href="#events">Events</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+  <!-- HEADER -->
+  <header>
+    <div class="logo">Philippines–Japan Teachers Association</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#events">Events</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-text">
-            <h1>Philippines–Japan Teachers Association</h1>
-            <p>Empowering educators. Building cultural bridges. Shaping global citizens.</p>
-            <a href="#contact" class="btn">Join Us</a>
-            <div class="hero-flags">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_the_Philippines.svg" alt="Philippines Flag">
-                <img src="https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg" alt="Japan Flag">
-            </div>
-        </div>
-    </section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Philippines–Japan Teachers Association</h1>
+      <p>Empowering educators. Building cultural bridges. Shaping global citizens.</p>
+      <a href="#contact" class="btn">Join Us</a>
+      <div class="hero-flags">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_the_Philippines.svg" alt="Philippines Flag">
+        <img src="https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg" alt="Japan Flag">
+      </div>
+    </div>
+  </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-        <h2>About Us</h2>
-        <p>PJTA fosters collaboration between Filipino and Japanese teachers through exchange programs, cultural initiatives, and professional training. Together, we aim to advance education and cultural understanding.</p>
-    </section>
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>PJTA fosters collaboration between Filipino and Japanese teachers through exchange programs, cultural initiatives, and professional training. Together, we aim to advance education and cultural understanding.</p>
+  </section>
 
-    <!-- PROGRAMS -->
-    <section id="programs">
-        <h2>Our Programs</h2>
-        <div class="grid">
-            <div class="card">🌏 Exchange Programs</div>
-            <div class="card">📚 Teacher Training</div>
-            <div class="card">🎌 Cultural Events</div>
-            <div class="card">📝 Research Projects</div>
-        </div>
-    </section>
+  <!-- PROGRAMS -->
+  <section id="programs">
+    <h2>Our Programs</h2>
+    <div class="grid">
+      <div class="card">🌏 Exchange Programs</div>
+      <div class="card">📚 Teacher Training</div>
+      <div class="card">🎌 Cultural Events</div>
+      <div class="card">📝 Research Projects</div>
+    </div>
+  </section>
 
-    <!-- EVENTS -->
-    <section id="events">
-        <h2>Upcoming Events</h2>
-        <div class="grid">
-            <div class="card">🇵🇭 Manila Workshop 2025</div>
-            <div class="card">🇯🇵 Tokyo Exchange Summit</div>
-            <div class="card">🌐 Virtual Teacher Forum</div>
-        </div>
-    </section>
+  <!-- EVENTS -->
+  <section id="events">
+    <h2>Upcoming Events</h2>
+    <div class="grid">
+      <div class="card">🇵🇭 Manila Workshop 2025</div>
+      <div class="card">🇯🇵 Tokyo Exchange Summit</div>
+      <div class="card">🌐 Virtual Teacher Forum</div>
+    </div>
+  </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <form action="mailto:pjta.association@gmail.com" method="POST" enctype="text/plain">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
-    </section>
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form action="mailto:pjta.association@gmail.com" method="POST" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2025 Philippines–Japan Teachers Association. All Rights Reserved.</p>
-    </footer>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Philippines–Japan Teachers Association. All Rights Reserved.</p>
+  </footer>
 </body>
 </html>
